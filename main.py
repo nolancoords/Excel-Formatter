@@ -20,8 +20,6 @@ def format_excel(input_file, output_file):
     )
 
     for ws in wb.worksheets:
-
-        # Format header row
         for cell in ws[1]:
             cell.fill = PatternFill(
                 start_color=HEADER_COLOR,
@@ -45,10 +43,7 @@ def format_excel(input_file, output_file):
             start=2
         ):
             for cell in row:
-
                 cell.border = thin_border
-
-                # Alternate row shading
                 if row_num % 2 == 0:
                     cell.fill = PatternFill(
                         start_color=ALT_ROW_COLOR,
@@ -60,7 +55,7 @@ def format_excel(input_file, output_file):
                     vertical="center"
                 )
 
-        # Auto-size columns
+
         for col in ws.columns:
             max_length = 0
             col_letter = get_column_letter(col[0].column)
@@ -82,5 +77,4 @@ def format_excel(input_file, output_file):
 if __name__ == "__main__":
     input_excel   = "raw_data.xlsx"
     output_excel = "formatted_data.xlsx"
-
     format_excel(input_excel, output_excel)
